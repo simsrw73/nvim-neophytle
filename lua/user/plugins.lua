@@ -31,6 +31,8 @@ end
 
 -- Have packer use a popup window
 packer.init {
+  ensure_dependencies = true,
+  auto_clean = true,
   display = {
     open_fn = function()
       return require("packer.util").float { border = "rounded" }
@@ -50,17 +52,23 @@ local function spec(use)
   }
   use { -- Useful lua functions used by lots of plugins
     "nvim-lua/plenary.nvim",
-    commit = "4b7e52044bbb84242158d977a50c4cbcd85070c7"
+    commit = "4b7e52044bbb84242158d977a50c4cbcd85070c7",
   }
 
   use { -- Autopairs, integrates with both cmp and treesitter
     "windwp/nvim-autopairs",
-    commit = "4fc96c8f3df89b6d23e5092d31c866c53a346347"
+    commit = "4fc96c8f3df89b6d23e5092d31c866c53a346347",
+    config = function ()
+      require "user.config.autopairs"
+    end,
   }
 
   use {
     "numToStr/Comment.nvim",
-    commit = "97a188a98b5a3a6f9b1b850799ac078faa17ab67"
+    commit = "97a188a98b5a3a6f9b1b850799ac078faa17ab67",
+    config = function ()
+      require "user.config.comment"
+    end,
   }
 
   use {
@@ -75,12 +83,18 @@ local function spec(use)
 
   use {
     "kyazdani42/nvim-tree.lua",
-    commit = "7282f7de8aedf861fe0162a559fc2b214383c51c"
+    commit = "7282f7de8aedf861fe0162a559fc2b214383c51c",
+    config = function ()
+      require "user.config.nvim-tree"
+    end,
   }
 
   use {
     "akinsho/bufferline.nvim",
-    commit = "83bf4dc7bff642e145c8b4547aa596803a8b4dc4"
+    commit = "83bf4dc7bff642e145c8b4547aa596803a8b4dc4",
+    config = function ()
+      require "user.config.bufferline"
+    end,
   }
 
   use {
@@ -90,32 +104,47 @@ local function spec(use)
 
   use {
     "nvim-lualine/lualine.nvim",
-    commit = "a52f078026b27694d2290e34efa61a6e4a690621"
+    commit = "a52f078026b27694d2290e34efa61a6e4a690621",
+    config = function ()
+      require "user.config.lualine"
+    end,
   }
 
   use {
     "akinsho/toggleterm.nvim",
-    commit = "2a787c426ef00cb3488c11b14f5dcf892bbd0bda"
+    commit = "2a787c426ef00cb3488c11b14f5dcf892bbd0bda",
+    config = function ()
+      require "user.config.toggleterm"
+    end,
   }
 
   use {
     "ahmedkhalf/project.nvim",
-    commit = "628de7e433dd503e782831fe150bb750e56e55d6"
+    commit = "628de7e433dd503e782831fe150bb750e56e55d6",
+    config = function ()
+      require "user.config.project"
+    end,
   }
 
   use {
     "lewis6991/impatient.nvim",
-    commit = "b842e16ecc1a700f62adb9802f8355b99b52a5a6"
+    commit = "b842e16ecc1a700f62adb9802f8355b99b52a5a6",
   }
 
   use {
     "lukas-reineke/indent-blankline.nvim",
-    commit = "db7cbcb40cc00fc5d6074d7569fb37197705e7f6"
+    commit = "db7cbcb40cc00fc5d6074d7569fb37197705e7f6",
+    config = function ()
+      require "user.config.indentline"
+    end,
   }
 
   use {
     "goolord/alpha-nvim",
-    commit = "0bb6fc0646bcd1cdb4639737a1cee8d6e08bcc31"
+    commit = "0bb6fc0646bcd1cdb4639737a1cee8d6e08bcc31",
+    config = function ()
+      require "user.config.alpha"
+    end,
   }
 
   -- Colorscheme
@@ -130,7 +159,10 @@ local function spec(use)
   -- cmp plugins
   use { -- The completion plugin
     "hrsh7th/nvim-cmp",
-    commit = "b0dff0ec4f2748626aae13f011d1a47071fe9abc"
+    commit = "b0dff0ec4f2748626aae13f011d1a47071fe9abc",
+    config = function ()
+      require "user.config.cmp"
+    end,
   }
 
   use { -- buffer completions
@@ -173,7 +205,12 @@ local function spec(use)
   -- use { "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" } -- simple to use language server installer
   use { -- enable LSP
     "neovim/nvim-lspconfig",
-    commit = "f11fdff7e8b5b415e5ef1837bdcdd37ea6764dda"
+    commit = "f11fdff7e8b5b415e5ef1837bdcdd37ea6764dda",
+    config = function ()
+      require "user.config.lsp.mason"
+      require("user.config.lsp.handlers").setup()
+      require "user.config.lsp.null-ls"
+    end
   }
 
   use {
@@ -193,31 +230,46 @@ local function spec(use)
 
   use {
     "RRethy/vim-illuminate",
-    commit = "a2e8476af3f3e993bb0d6477438aad3096512e42"
+    commit = "a2e8476af3f3e993bb0d6477438aad3096512e42",
+    config = function ()
+      require "user.config.illuminate"
+    end,
   }
 
   -- Telescope
   use {
     "nvim-telescope/telescope.nvim",
-    commit = "76ea9a898d3307244dce3573392dcf2cc38f340f"
+    commit = "76ea9a898d3307244dce3573392dcf2cc38f340f",
+    config = function ()
+      require "user.config.telescope"
+    end,
   }
 
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
     commit = "8e763332b7bf7b3a426fd8707b7f5aa85823a5ac",
+    config = function ()
+      require "user.config.treesitter"
+    end,
   }
 
   -- Git
   use {
     "lewis6991/gitsigns.nvim",
-    commit = "f98c85e7c3d65a51f45863a34feb4849c82f240f"
+    commit = "f98c85e7c3d65a51f45863a34feb4849c82f240f",
+    config = function ()
+      require "user.config.gitsigns"
+    end
   }
 
   -- DAP
   use {
     "mfussenegger/nvim-dap",
-    commit = "6b12294a57001d994022df8acbe2ef7327d30587"
+    commit = "6b12294a57001d994022df8acbe2ef7327d30587",
+    config = function ()
+      require "user.config.dap"
+    end
   }
 
   use {
@@ -227,7 +279,7 @@ local function spec(use)
 
   use {
     "ravenxrz/DAPInstall.nvim",
-    commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de"
+    commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de",
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
