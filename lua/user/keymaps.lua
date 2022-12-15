@@ -81,3 +81,14 @@ keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 
 -- Lsp
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+
+-- Tabs
+keymap("n", "<leader>ta", ":$tabnew<CR>", { noremap = true, silent = true })
+keymap("n", "<leader>tc", ":tabclose<CR>", { noremap = true, silent = true })
+keymap("n", "<leader>to", ":tabonly<CR>", { noremap = true, silent = true })
+keymap("n", "<leader>tn", ":tabn<CR>", { noremap = true, silent = true })
+keymap("n", "<leader>tp", ":tabp<CR>", { noremap = true, silent = true })
+-- move current tab to previous position
+keymap("n", "<leader>tmp", ":-tabmove<CR>", { noremap = true, silent = true })
+-- move current tab to next position
+keymap("n", "<leader>tmn", ":+tabmove<CR>", { noremap = true, silent = true })

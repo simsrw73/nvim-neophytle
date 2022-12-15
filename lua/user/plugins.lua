@@ -90,11 +90,13 @@ local function spec(use)
   }
 
   use {
-    "akinsho/bufferline.nvim",
-    commit = "83bf4dc7bff642e145c8b4547aa596803a8b4dc4",
-    config = function ()
-      require "user.config.bufferline"
+    "nanozuki/tabby.nvim",
+    setup = function ()
+      vim.opt.showtabline = 2
     end,
+    config = function ()
+      require "user.config.tabby"
+    end
   }
 
   use {
