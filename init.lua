@@ -26,3 +26,6 @@ require "user.config.indentline"
 require "user.config.alpha"
 require "user.config.lsp"
 require "user.config.dap"
+
+-- TODO: Ordering problem causing bufferline not to be colored unless we call again here.
+local status_ok, colorscheme = pcall(vim.cmd, "colorscheme tokyonight-night")
