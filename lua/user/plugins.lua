@@ -42,7 +42,7 @@ packer.init {
 }
 
 -- Install your plugins here
-return packer.startup(function(use)
+local function spec(use)
   -- My plugins here
   use { -- Have packer manage itself
     "wbthomason/packer.nvim",
@@ -237,4 +237,11 @@ return packer.startup(function(use)
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
-end)
+end
+
+packer.startup {
+  spec,
+  config = {
+    -- config here
+  },
+}
