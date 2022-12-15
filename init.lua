@@ -1,4 +1,10 @@
-require "user.config.impatient"
+local status_ok, imp = pcall(require, "impatient")
+if not status_ok then
+    return
+else
+    imp.enable_profile()
+end
+
 require "user.options"
 require "user.keymaps"
 require "user.plugins"
